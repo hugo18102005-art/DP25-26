@@ -1,0 +1,77 @@
+import java.util.ArrayList;
+import java.util.List;
+/**
+ * Model a charger unit within a {@link ChargingStation}.
+ * It tracks its charging capabilities, fee, and the electric vehicles it has recharged.
+ * * @author David J. Barnes and Michael Kölling
+ * @author DP classes 
+ * @version 2024.10.07
+ */
+public class Charger
+{
+    //TODO: Complete this code
+    
+
+    /**
+     * Constructor for objects of class Charger.
+     * @param id The unique identifier of the charger.
+     * @param speed The maximum charging speed in kWh.
+     * @param fee The cost per kWh for charging.
+     */
+    public Charger(String id, int speed, float fee)
+    {
+        //TODO: Complete this code
+    }
+
+    
+    /**
+     * Returns a string representation of the charger, including its ID, speed, fee, and the number of EVs recharged.
+     * @return A string representation of the charger.
+     */
+    @Override
+    public String toString()
+    {
+        //TODO: Complete this code
+        return null;
+    }
+
+    
+    /**
+     * Returns a complete string representation of the charger, including details of all {@link ElectricVehicle}s it has recharged.
+     * @return A string containing complete information about the charger and its usage history.
+     */
+    public String getCompleteInfo()
+    {
+         //TODO: Complete this code
+         return null;
+    }
+    
+    /**
+     * Adds an {@link ElectricVehicle} to the list of vehicles that have been recharged by this charger.
+     * @param vehicle The electric vehicle that was recharged.
+     */
+    public void addEvRecharged(ElectricVehicle vehicle){
+        //TODO: Complete this code
+    }
+    
+    /**
+     * @return The total number of {@link ElectricVehicle}s that have been recharged by this charger.
+     */
+    public int getNumerEVRecharged(){
+        //TODO: Complete this code
+        return 0;
+    }
+    
+    
+    /**
+     * Simulates the charging process for an {@link ElectricVehicle}.
+     * Increases the amount collected and registers the vehicle as recharged.
+     * @param vehicle The vehicle to recharge.
+     * @param kwsRecharging The amount of kWh to be recharged.
+     * @return The cost of the recharge operation.
+     */
+    public float recharge(ElectricVehicle vehicle,int kwsRecharging){
+        //TODO: Complete this code 
+        return 0;
+    }
+}
