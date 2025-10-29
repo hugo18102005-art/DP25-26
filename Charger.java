@@ -5,7 +5,7 @@ import java.util.List;
  * It tracks its charging capabilities, fee, and the electric vehicles it has recharged.
  * * @author David J. Barnes and Michael Kölling
  * @author DP classes 
- * @version 2024.10.07dad
+ * @version 2024.10.07
  */
 public class Charger
 {
