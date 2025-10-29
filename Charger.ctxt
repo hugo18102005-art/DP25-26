@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=Charger
+comment0.text=\r\n\ Model\ a\ charger\ unit\ within\ a\ {@link\ ChargingStation}.\r\n\ It\ tracks\ its\ charging\ capabilities,\ fee,\ and\ the\ electric\ vehicles\ it\ has\ recharged.\r\n\ *\ @author\ David\ J.\ Barnes\ and\ Michael\ K\u00F6lling\r\n\ @author\ DP\ classes\ \r\n\ @version\ 2024.10.07dad\r\n
+comment1.params=id\ speed\ fee
+comment1.target=Charger(java.lang.String,\ int,\ float)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Charger.\r\n\ @param\ id\ The\ unique\ identifier\ of\ the\ charger.\r\n\ @param\ speed\ The\ maximum\ charging\ speed\ in\ kWh.\r\n\ @param\ fee\ The\ cost\ per\ kWh\ for\ charging.\r\n
+comment2.params=
+comment2.target=java.lang.String\ toString()
+comment2.text=\r\n\ Returns\ a\ string\ representation\ of\ the\ charger,\ including\ its\ ID,\ speed,\ fee,\ and\ the\ number\ of\ EVs\ recharged.\r\n\ @return\ A\ string\ representation\ of\ the\ charger.\r\n
+comment3.params=
+comment3.target=java.lang.String\ getCompleteInfo()
+comment3.text=\r\n\ Returns\ a\ complete\ string\ representation\ of\ the\ charger,\ including\ details\ of\ all\ {@link\ ElectricVehicle}s\ it\ has\ recharged.\r\n\ @return\ A\ string\ containing\ complete\ information\ about\ the\ charger\ and\ its\ usage\ history.\r\n
+comment4.params=vehicle
+comment4.target=void\ addEvRecharged(ElectricVehicle)
+comment4.text=\r\n\ Adds\ an\ {@link\ ElectricVehicle}\ to\ the\ list\ of\ vehicles\ that\ have\ been\ recharged\ by\ this\ charger.\r\n\ @param\ vehicle\ The\ electric\ vehicle\ that\ was\ recharged.\r\n
+comment5.params=
+comment5.target=int\ getNumerEVRecharged()
+comment5.text=\r\n\ @return\ The\ total\ number\ of\ {@link\ ElectricVehicle}s\ that\ have\ been\ recharged\ by\ this\ charger.\r\n
+comment6.params=vehicle\ kwsRecharging
+comment6.target=float\ recharge(ElectricVehicle,\ int)
+comment6.text=\r\n\ Simulates\ the\ charging\ process\ for\ an\ {@link\ ElectricVehicle}.\r\n\ Increases\ the\ amount\ collected\ and\ registers\ the\ vehicle\ as\ recharged.\r\n\ @param\ vehicle\ The\ vehicle\ to\ recharge.\r\n\ @param\ kwsRecharging\ The\ amount\ of\ kWh\ to\ be\ recharged.\r\n\ @return\ The\ cost\ of\ the\ recharge\ operation.\r\n
+numComments=7
