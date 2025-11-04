@@ -39,9 +39,65 @@ public class Location
      */
     public Location nextLocation(Location destination)
     {
-        //TODO: Complete this code
-        return null;
+        if(destination == null) throw new IllegalArgumentException("null Location in nextLocation(Location)");
+        int a = getX();
+        int b = getY();
+        
+        if ( (this.x == destination.getX()) && (this.y == destination.getY()) ){
+            
+            a = destination.getX();
+            b = destination.getY();
+        }else{
+            
+            if( (this.x != destination.getX()) && (this.y != destination.getY()) ){
+                
+                if (this.x < destination.getX()){
+                    
+                    a = a + 1;
+                }else{
+                    
+                    a = a -1;
+                }
+                
+                if (this.y < destination.getY()){
+                    
+                    b = b + 1;
+                }else{
+                    
+                    b = b - 1;
+                }
+            }else{
+                
+                if ( (this.x == destination.getX()) || (this.y == destination.getY()) ){
+                    
+                    if ( this.x == destination.getX() ){
+                        
+                        if ( this.y < destination.getY() ){
+                            
+                            b = b + 1;
+                        }else{
+                            
+                            b = b - 1;
+                        }
+                    }else{
+                        
+                        if ( this.x < destination.getX() ){
+                            
+                            a = a + 1;
+                        }else{
+                            
+                            a = a - 1;
+                        }
+                    }
+                }
+            }
+        }
+        
+        Location nextStep = new Location (a,b);
+        
+        return nextStep;
     }
+    
     /**
      * Determines the number of movements required to get from here to the destination, 
      * using the Chebyshev distance (maximum of the absolute differences of the coordinates).
