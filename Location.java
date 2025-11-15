@@ -40,62 +40,34 @@ public class Location
     public Location nextLocation(Location destination)
     {
         if(destination == null) throw new IllegalArgumentException("null Location in nextLocation(Location)");
+        
+        if (this.x == destination.getX() && this.y == destination.getY()){
+            
+            return new Location(this.x, this.y);
+        }
+        
         int a = getX();
         int b = getY();
         
-        if ( (this.x == destination.getX()) && (this.y == destination.getY()) ){
+        if (this.x < destination.getX()){
             
-            a = destination.getX();
-            b = destination.getY();
-        }else{
+            a++;
+        }
+        else if (this.x > destination.getX()){
             
-            if( (this.x != destination.getX()) && (this.y != destination.getY()) ){
-                
-                if (this.x < destination.getX()){
-                    
-                    a = a + 1;
-                }else{
-                    
-                    a = a -1;
-                }
-                
-                if (this.y < destination.getY()){
-                    
-                    b = b + 1;
-                }else{
-                    
-                    b = b - 1;
-                }
-            }else{
-                
-                if ( (this.x == destination.getX()) || (this.y == destination.getY()) ){
-                    
-                    if ( this.x == destination.getX() ){
-                        
-                        if ( this.y < destination.getY() ){
-                            
-                            b = b + 1;
-                        }else{
-                            
-                            b = b - 1;
-                        }
-                    }else{
-                        
-                        if ( this.x < destination.getX() ){
-                            
-                            a = a + 1;
-                        }else{
-                            
-                            a = a - 1;
-                        }
-                    }
-                }
-            }
+            a--;
         }
         
-        Location nextStep = new Location (a,b);
+        if (this.y < destination.getY()){
+            
+            b++;
+        }
+        else if (this.y > destination.getY()){
+            
+            b--;
+        }
         
-        return nextStep;
+        return new Location(a, b);
     }
     
     /**

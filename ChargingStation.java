@@ -11,7 +11,11 @@ import java.util.stream.Collectors;
  */
 public class ChargingStation
 {
-    //TODO: Complete this code
+    private String id;
+    private String city;
+    private Location location;
+    private List<Charger> chargers;
+    
 
     /**
      * Constructor for objects of class ChargingStation.
@@ -123,7 +127,11 @@ public class ChargingStation
      */
     public void addCharger(Charger charger)
     {
-        //TODO: Complete this code
+        if (charger == null)throw new IllegalArgumentException("null Charger in addCharger (ChargingStation)");
+        
+        chargers.add(charger);
+        
+        Collections.sort(chargers, new ComparatorChargersChargingSpeed());
     }
     
 }

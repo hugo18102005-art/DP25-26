@@ -9,7 +9,9 @@ import java.util.List;
  */
 public class Charger
 {
-    //TODO: Complete this code
+    String id;
+    int chargingSpeed;
+    int chargingFee;
     
 
     /**
@@ -73,5 +75,29 @@ public class Charger
     public float recharge(ElectricVehicle vehicle,int kwsRecharging){
         //TODO: Complete this code 
         return 0;
+    }
+    
+    /**
+     * 
+     */
+    public String getId (){
+        
+        return id;
+    }
+    
+    /**
+     * 
+     */
+    public int getChargingSpeed (){
+        
+        return chargingSpeed;
+    }
+    
+    /**
+     * 
+     */
+    public int getChargingFee (){
+        
+        return chargingFee;
     }
 }
