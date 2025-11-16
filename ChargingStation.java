@@ -98,8 +98,12 @@ public class ChargingStation
      */
     public String getCompleteInfo()
     {
-        //TODO: Complete this code
-        return null;
+        String info = this.toString();
+        for(Charger charger : this.chargers){
+            info += "\n";
+            info += charger.getCompleteInfo();
+        }
+        return info;
     }
     
 
@@ -110,8 +114,8 @@ public class ChargingStation
      */
     public String showFinalInfo()
     {
-        //TODO: Complete this code
-        return null;
+        
+        return this.getCompleteInfo();
     }
 
     /**
@@ -120,12 +124,11 @@ public class ChargingStation
     @Override
     public String toString()
     {
-        return "ChargingStation{" +
-                "id='" + id + '\'' +
-                ", city='" + city + '\'' +
-                ", location=" + location +
-                ", numChargers=" + chargers.size() +
-                '}';
+        return String.format("(ChargingStation: %s, %s, %d, %s)",
+        this.id,
+        this.city,
+        this.getNumerEVRecharged(),
+        this.location.toString());
     }
     
     /**
@@ -133,8 +136,12 @@ public class ChargingStation
      * @return The total number of unique recharges.
      */
     public int getNumerEVRecharged(){
-        //TODO: Complete this code
-        return 0;
+        int total = 0;
+        //suma el total de recargas de cada cargador individual
+        for(Charger charger : this.chargers){
+            total += charger.getNumerEVRecharged();
+        }
+        return total;
     }
     
     /**
