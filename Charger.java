@@ -119,9 +119,16 @@ public class Charger
      */
     public void addEvRecharged(ElectricVehicle vehicle){
 
+
         if(vehicle != null){
             this.evsRecharged.add(vehicle);
         }
+
+        
+        if (vehicle == null) throw new IllegalArgumentException("null vehicle in addEvRecharged (Charger)");
+        
+        evsRecharged.add(vehicle);
+
 
         
         if (vehicle == null) throw new IllegalArgumentException("null vehicle in addEvRecharged (Charger)");
