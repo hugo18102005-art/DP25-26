@@ -66,10 +66,16 @@ public class ChargingStation
      */
     public Charger getFreeCharger()
     {
-         
+        for(Charger c : chargers){
+            
+            if (c.isFree()){
+                
+                return c;
+            }
+        }
+        
         return null;
     }
-    
        
     
     /**
