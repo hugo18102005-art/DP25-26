@@ -8,7 +8,40 @@ import java.util.List;
  */
 public class ElectricVehicle 
 {
-    //TODO: Complete this code
+    private static final int CONSUMPTION_PER_STEP = 5;
+
+    private final String plate;             // Matrícula (7 caracteres)
+    private final String name;              // Identificativo (ej. "Mercedes EQE")
+    private final EVCompany company;       // Empresa a la que está suscrito
+    
+    private Location location;              // Posición actual
+    private Location targetLocation;  // Destino FINAL
+    
+    private int idleCount;                  // Pasos parado en el destino
+    private final int batteryCapacity;      // Capacidad máxima kWh
+    private int batteryLevel;               // Carga actual kWh
+    
+    private int kwsCharged;                 // Total kWh cargados en su historia
+    private int chargesCount;               // Total de recargas en su historia
+    private float chargestCost;             // Coste total de recargas
+    /**
+     * El destino INMEDIATO al que se dirige el vehículo.
+     * Puede ser el 'targetLocation' o la 'Location' de una ChargingStation.
+     */
+    private Location currentDestination;
+    
+    /**
+     * La estación de carga específica a la que nos dirigimos (si aplica).
+     * Se usa para saber qué estación interrogar al llegar.
+     */
+    private ChargingStation targetChargingStation;
+    
+    /**
+     * Bandera para saber si el vehículo ha terminado su simulación.
+     * Se activa al llegar al 'targetLocation' o si se queda sin batería
+     * o si no hay cargadores libres.
+     */
+    private boolean hasFinishedSimulation;
 
     /**
      * Constructor of class ElectricVehicle.
@@ -20,19 +53,38 @@ public class ElectricVehicle
      * @param batteryCapacity The maximum capacity of the battery.
      * @throws NullPointerException If company, location, or targetLocation is null.
      */
-    public ElectricVehicle(EVCompany company, Location location, Location targetLocation, String name, String plate, int batteryCapacity)
+    public ElectricVehicle(String plate, String name, EVCompany company, 
+                           Location initialLocation, Location targetLocation, 
+                           int batteryCapacity) 
     {
-    }
+        this.plate = plate;
+        this.name = name;
+        this.company = company;
+        this.location = initialLocation;
+        this.targetLocation = targetLocation;
+        this.batteryCapacity = batteryCapacity;
 
-    
-    /**
+        // Valores iniciales
+        this.batteryLevel = batteryCapacity; // Asumimos que empieza lleno
+        this.idleCount = 0;
+        this.kwsCharged = 0;
+        this.chargesCount = 0;
+        this.chargestCost = 0.0f;
+        
+        // La ruta se calculará en el primer 'act()'
+        this.currentDestination = null; 
+        this.targetChargingStation = null;
+        this.hasFinishedSimulation = false;
+    }
+        
+        /**
      * Get the current location.
      * @return Where this vehicle is currently located.
      */
     public Location getLocation()
     {
-        //TODO: Complete this code
-        return null;
+        
+        return location;
     }
 
     /**
@@ -42,7 +94,11 @@ public class ElectricVehicle
      */
     public void setLocation(Location location)
     {
-        //TODO: Complete this code
+        if (location != null) {
+            this.location = location;
+        } else {
+            throw new NullPointerException("La location no puede ser nula");
+        }
     }
 
     /**
@@ -51,8 +107,7 @@ public class ElectricVehicle
      */
     public Location getTargetLocation()
     {
-        //TODO: Complete this code
-        return null;
+        return targetLocation;
     }
 
     /**
@@ -61,7 +116,6 @@ public class ElectricVehicle
      */
     public Location getRechargingLocation()
     {
-        //TODO: Complete this code
         return null;
     }
     
@@ -84,7 +138,7 @@ public class ElectricVehicle
      */
     public void setTargetLocation(Location location)
     {
-        //TODO: Complete this code
+        targetLocation = location;
     }
 
     
@@ -116,13 +170,13 @@ public class ElectricVehicle
      */
     public boolean enoughBattery(int distanceToTargetLocation)
     {
-        //TODO: Complete this code
-        return false;
+        int kwhNeeded = distanceToTargetLocation * CONSUMPTION_PER_STEP;
+        return batteryLevel >= kwhNeeded;
 
     }
     
     
-    /**
+        /**
      * Determines the optimal intermediate {@link ChargingStation} to visit for recharging
      * if the vehicle cannot reach the final target directly.
      * Sets {@code rechargingLocation} to the chosen station's location.
@@ -176,11 +230,10 @@ public class ElectricVehicle
       */
      public int distanceToTheTargetLocation()
      {
-        //TODO: Complete this code 
-        return 0;
+        return this.location.distance(this.targetLocation);
      }
 
-     /**
+         /**
       * Simulates the recharging process when the vehicle arrives at a {@code rechargingLocation}.
       * The battery is charged to full capacity, the cost is calculated, and the route is recalculated.
       * @param step The current step of the simulation.
@@ -253,5 +306,25 @@ public class ElectricVehicle
     public String getInitialFinalInfo(){
          //TODO: Complete this code
          return null;
+    }
+    public String getPlate() {
+        return plate;
+    }
+
+    public String getName() {
+        return name;
+    }
+    
+    public int getBatteryLevel() {
+        return batteryLevel;
+    }
+
+    public int getBatteryCapacity() {
+        return batteryCapacity;
+    }
+    
+    // Asumimos que el 'id' del que hablan los logs es la 'plate'
+    public String getId() {
+        return plate;
     }
 }

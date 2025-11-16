@@ -9,7 +9,12 @@ import java.util.List;
  */
 public class Charger
 {
-    //TODO: Complete this code
+    private final String id;
+    private final int chargingSpeed; 
+    private final float chargingFee;
+    private final List<ElectricVehicle> evsRecharged;
+    private float amountCollected;
+    private boolean free;
     
 
     /**
@@ -18,12 +23,54 @@ public class Charger
      * @param speed The maximum charging speed in kWh.
      * @param fee The cost per kWh for charging.
      */
-    public Charger(String id, int speed, float fee)
+    public Charger(String id, int chargingSpeed, float chargingFee)
     {
-        //TODO: Complete this code
+        this.id = id;
+        this.chargingSpeed = chargingSpeed;
+        this.chargingFee = chargingFee;
+        this.evsRecharged = new ArrayList<>();
+        this.amountCollected = 0.0f;
     }
 
+    /**
+     * @return El ID único del cargador.
+     */
+    public String getId() {
+        return this.id;
+    }
     
+    /**
+     * @return La velocidad de carga (para el Comparator).
+     */
+    public double getSpeed() {
+        // El comparator espera double, pero el constructor pide int.
+        // Hacemos un cast (conversión).
+        return (double) this.chargingSpeed;
+    }
+
+    /**
+     * @return La tarifa de carga (céntimos/kWh).
+     */
+    public float getFee() {
+        return this.chargingFee;
+    }
+    
+    /**
+     * @return La tarifa de carga (para el Comparator).
+     * Nota: Añadido para coincidir con el Comparator (getRate).
+     */
+    public double getRate() {
+        // El comparator espera double, pero el constructor pide float.
+        // Hacemos un cast.
+        return (double) this.chargingFee;
+    }
+    
+    /**
+     * @return La cantidad total de dinero recolectada.
+     */
+    public float getTotalAmountCollected() {
+        return this.amountCollected;
+    }
     /**
      * Returns a string representation of the charger, including its ID, speed, fee, and the number of EVs recharged.
      * @return A string representation of the charger.
@@ -31,10 +78,13 @@ public class Charger
     @Override
     public String toString()
     {
-        //TODO: Complete this code
-        return null;
+        return "Charger[" + this.id +
+               ", Speed: " + this.chargingSpeed + "kWh" +
+               ", Fee: " + String.format("%.2f", this.chargingFee) + "€/kWh" + 
+               ", Recharged: " + getNumerEVRecharged() + " EVs" +
+               "]";
     }
-
+    
     
     /**
      * Returns a complete string representation of the charger, including details of all {@link ElectricVehicle}s it has recharged.
@@ -58,8 +108,7 @@ public class Charger
      * @return The total number of {@link ElectricVehicle}s that have been recharged by this charger.
      */
     public int getNumerEVRecharged(){
-        //TODO: Complete this code
-        return 0;
+        return this.evsRecharged.size();
     }
     
     

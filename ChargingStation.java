@@ -2,6 +2,7 @@ import java.util.List;
 import java.util.Collections;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+import java.util.*;
 
 /**
  * Models an Electric Vehicle Charging Station.
@@ -11,7 +12,11 @@ import java.util.stream.Collectors;
  */
 public class ChargingStation
 {
-    //TODO: Complete this code
+    private String id;
+    private String city;
+    private Location location;
+    private SortedSet<Charger> chargers;
+    private Comparator<Charger> chargerComparator;
 
     /**
      * Constructor for objects of class ChargingStation.
@@ -21,7 +26,10 @@ public class ChargingStation
      */
     public ChargingStation(String city, String id, Location location)
     {
-       //TODO: Complete this code
+       this.id = id;
+       this.city = city;
+       this.location = location;
+       this.chargers = new TreeSet<>(new ChargerComparator());
     }
 
     /**
@@ -29,8 +37,7 @@ public class ChargingStation
      */
     public String getId()
     {
-        //TODO: Complete this code
-        return null;
+        return id;
     }
     
     /**
@@ -38,18 +45,16 @@ public class ChargingStation
      */
     public Location getLocation()
     {
-        //TODO: Complete this code  
-        return null;
+        return location;
     }
 
     
     /**
      * @return An unmodifiable list of all {@link Charger}s at the station.
      */
-    public List<Charger> getChargers()
+    public SortedSet<Charger> getChargers()
     {
-        //TODO: Complete this code
-        return null;
+        return Collections.unmodifiableSortedSet(chargers);
     }
     
     /**
@@ -59,7 +64,7 @@ public class ChargingStation
      */
     public Charger getFreeCharger()
     {
-        //TODO: Complete this code   
+         
         return null;
     }
     
@@ -72,7 +77,10 @@ public class ChargingStation
      */
     public void setLocation(Location location)
     {
-         //TODO: Complete this code
+         if (location == null) {
+            throw new NullPointerException("La localizacion no puede ser nula");
+        }
+        this.location = location;
     }
 
     /**
@@ -104,8 +112,12 @@ public class ChargingStation
     @Override
     public String toString()
     {
-        //TODO: Complete this code
-        return null;
+        return "ChargingStation{" +
+                "id='" + id + '\'' +
+                ", city='" + city + '\'' +
+                ", location=" + location +
+                ", numChargers=" + chargers.size() +
+                '}';
     }
     
     /**
@@ -123,7 +135,6 @@ public class ChargingStation
      */
     public void addCharger(Charger charger)
     {
-        //TODO: Complete this code
+        
     }
-    
 }

@@ -8,15 +8,19 @@ import java.util.*;
  */
 public class EVCompany  
 {
-    //TODO: Complete this code
+    private final String name;
+    private Set<ElectricVehicle> subscribedVehicles;
+    private List<ChargingStation> stations;
 
     /**
      * Constructor for objects of class EVCompany.
      * @param name The name of the company.
      */
-    public EVCompany()
+    public EVCompany(String name)
     {
-        //TODO: Complete this code
+        this.name = name;
+        this.subscribedVehicles = new HashSet<>();
+        this.stations = new ArrayList<>();
     }
 
      /**
@@ -24,8 +28,7 @@ public class EVCompany
      */
     public String getName()
     {
-        //TODO: Complete this code
-        return null;
+        return name;
     }
     
     
@@ -34,7 +37,6 @@ public class EVCompany
      */
     public List<ElectricVehicle> getVehicles()
     {       
-        //TODO: Complete this code
         return null;
     }
 
@@ -54,7 +56,9 @@ public class EVCompany
      */
     public void addChargingStation(ChargingStation station)
     {       
-        //TODO: Complete this code
+       if (station != null && !this.stations.contains(station)){
+           this.stations.add(station);
+        }
     }
     
     
