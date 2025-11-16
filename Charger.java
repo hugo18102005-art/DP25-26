@@ -30,6 +30,7 @@ public class Charger
         this.chargingFee = chargingFee;
         this.evsRecharged = new ArrayList<>();
         this.amountCollected = 0.0f;
+        this.free = true;
     }
 
     /**
@@ -40,7 +41,7 @@ public class Charger
     }
     
     /**
-     * @return La velocidad de carga (para el Comparator).
+     * @return La velocidad de carga.
      */
     public int getChargingSpeed (){
         
@@ -53,6 +54,14 @@ public class Charger
     public float getChargingFee (){
         
         return this.chargingFee;
+    }
+    
+    /**
+     * @return La disponibilidad del cargador ("true" si está disponible y "false" en caso contrario)
+     */
+    public boolean isFree(){
+        
+        return this.free;
     }
     
     /**
@@ -102,7 +111,10 @@ public class Charger
      * @param vehicle The electric vehicle that was recharged.
      */
     public void addEvRecharged(ElectricVehicle vehicle){
-        //TODO: Complete this code
+        
+        if (vehicle == null) throw new IllegalArgumentException("null vehicle in addEvRecharged (Charger)");
+        
+        evsRecharged.add(vehicle);
     }
     
     /**
