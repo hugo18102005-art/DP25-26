@@ -120,7 +120,21 @@ public class Charger
      * @return The cost of the recharge operation.
      */
     public float recharge(ElectricVehicle vehicle,int kwsRecharging){
-        //TODO: Complete this code 
-        return 0;
+        //Marco el cargador como ocupado
+        this.free = false;
+        
+        //caluclo el coste de la recarga
+        float costCharge = kwsRecharging * this.getChargingFee();
+        
+        //Aumento la cantidad recuadada
+        this.amountCollected += costCharge;
+        
+        this.addEvRecharged(vehicle);
+        
+        //Marco como libre
+        this.free = true;
+        
+        return costCharge;
+        
     }    
 }
