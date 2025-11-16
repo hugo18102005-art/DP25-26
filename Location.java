@@ -78,8 +78,10 @@ public class Location
      */
     public int distance(Location destination)
     {
-        //TODO: Complete this code
-        return 0;
+         int valorAbsX = Math.abs(destination.getX() - this.x);
+        int valorAbsY = Math.abs(destination.getY() - this.y);
+        
+        return Math.max(valorAbsX,valorAbsY);
     }
     
     /**

@@ -36,6 +36,8 @@ public class ElectricVehicle
      */
     private ChargingStation targetChargingStation;
     
+    
+    private Charger selectedCharger = null;
     /**
      * Bandera para saber si el vehículo ha terminado su simulación.
      * Se activa al llegar al 'targetLocation' o si se queda sin batería
@@ -238,9 +240,31 @@ public class ElectricVehicle
       * The battery is charged to full capacity, the cost is calculated, and the route is recalculated.
       * @param step The current step of the simulation.
       */
-    public void recharge(int step)
-    {
-        //TODO: Complete this code    
+    public void recharge(int step) {
+        if(this.selectedCharger == null){
+            System.out.println("Error: 'recharge' llamado sin cargador seleccionado");
+            return;
+        }
+        //Calculamos cuanta energia necesita para llenarse
+        int kwhToCharge = this.batteryCapacity - this.batteryLevel;
+        
+        //Usa el cargador guardado y llama a otro metodo
+        float costOfThisCharge = this.selectedCharger.recharge(this, kwhToCharge);
+        
+        //Actualizar los campos de este vehiculo
+        this.incrementCharges();
+        this.incrementChargesCost(costOfThisCharge);
+        this.batteryLevel = this.batteryCapacity;
+        
+        this.calculateRoute();
+        
+        String message = this.plate +  " recharges: " + kwhToCharge + " kwh at charger: "+
+        this.selectedCharger.getId() + " with cost: "+ costOfThisCharge+ " euros";
+        
+        System.out.println( " (step: "+ step + " -ElectricVehicle: "+message);
+        
+        //Limpiar el cargador
+        this.selectedCharger = null;
     } 
     
     /**

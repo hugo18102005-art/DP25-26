@@ -46,7 +46,9 @@ public class EVCompany
      */
     public void addElectricVehicle(ElectricVehicle vehicle)
     {       
-        //TODO: Complete this code
+        if(vehicle != null){
+            this.subscribedVehicles.add(vehicle);
+        }
     }
 
     
