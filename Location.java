@@ -39,9 +39,37 @@ public class Location
      */
     public Location nextLocation(Location destination)
     {
-        //TODO: Complete this code
-        return null;
+        if(destination == null) throw new IllegalArgumentException("null Location in nextLocation(Location)");
+        
+        if (this.x == destination.getX() && this.y == destination.getY()){
+            
+            return new Location(this.x, this.y);
+        }
+        
+        int a = getX();
+        int b = getY();
+        
+        if (this.x < destination.getX()){
+            
+            a++;
+        }
+        else if (this.x > destination.getX()){
+            
+            a--;
+        }
+        
+        if (this.y < destination.getY()){
+            
+            b++;
+        }
+        else if (this.y > destination.getY()){
+            
+            b--;
+        }
+        
+        return new Location(a, b);
     }
+    
     /**
      * Determines the number of movements required to get from here to the destination, 
      * using the Chebyshev distance (maximum of the absolute differences of the coordinates).

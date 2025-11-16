@@ -15,8 +15,10 @@ public class ChargingStation
     private String id;
     private String city;
     private Location location;
+    
     private SortedSet<Charger> chargers;
     private Comparator<Charger> chargerComparator;
+
 
     /**
      * Constructor for objects of class ChargingStation.
@@ -135,6 +137,13 @@ public class ChargingStation
      */
     public void addCharger(Charger charger)
     {
+
+        if (charger == null)throw new IllegalArgumentException("null Charger in addCharger (ChargingStation)");
         
+        boolean added = chargers.add(charger);
+        if (!added) {
+        throw new IllegalArgumentException("El cargador ya existe (comparador lo considera duplicado).");
+        }
+
     }
 }

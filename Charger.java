@@ -9,13 +9,13 @@ import java.util.List;
  */
 public class Charger
 {
+
     private final String id;
     private final int chargingSpeed; 
     private final float chargingFee;
     private final List<ElectricVehicle> evsRecharged;
     private float amountCollected;
-    private boolean free;
-    
+    private boolean free;   
 
     /**
      * Constructor for objects of class Charger.
@@ -122,5 +122,20 @@ public class Charger
     public float recharge(ElectricVehicle vehicle,int kwsRecharging){
         //TODO: Complete this code 
         return 0;
+    }    
+    /**
+     * 
+     */
+    public int getChargingSpeed (){
+        
+        return chargingSpeed;
+    }
+    
+    /**
+     * 
+     */
+    public float getChargingFee (){
+        
+        return chargingFee;
     }
 }

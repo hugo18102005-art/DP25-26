@@ -63,7 +63,7 @@ public class EVDemo
             step(step);
         }
         
-        // TODO: Complete the code here
+        showFinalInfo();
 
     }
 
@@ -109,8 +109,13 @@ public class EVDemo
                                         
         //createLocations(locations,targetLocations);
         for (int i=0;i < DEMO.getNumVehiclesToCreate();i++){
-            ElectricVehicle ev = new ElectricVehicle(company, locations[i],targetLocations[i],("EV"+i),(i+"CCC"),(i+1)*15);
-            vehicles.add(ev);
+            
+        String plate = "EV" + i;          // Matrícula
+        String name = i + "CCC";          // Nombre
+        int batteryCapacity = (i + 1) * 15; // Capacidad de batería
+
+        ElectricVehicle ev = new ElectricVehicle(plate, name, company,locations[i], targetLocations[i], batteryCapacity);
+        vehicles.add(ev);
             // TODO: Complete the code here
         }
         
