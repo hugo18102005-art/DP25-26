@@ -17,8 +17,6 @@ public class ChargingStation
     private Location location;
     
     private SortedSet<Charger> chargers;
-    private Comparator<Charger> chargerComparator;
-
 
     /**
      * Constructor for objects of class ChargingStation.
@@ -28,6 +26,7 @@ public class ChargingStation
      */
     public ChargingStation(String city, String id, Location location)
     {
+        if (location == null) throw new IllegalArgumentException("Location cannot be null");
        this.id = id;
        this.city = city;
        this.location = location;

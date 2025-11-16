@@ -31,13 +31,12 @@ public class EVCompany
         return name;
     }
     
-    
     /**
      * @return An unmodifiable list of all {@link ElectricVehicle}s.
      */
     public List<ElectricVehicle> getVehicles()
     {       
-        return null;
+        return Collections.unmodifiableList(new ArrayList<>(subscribedVehicles));
     }
 
     /**
