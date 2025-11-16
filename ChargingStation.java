@@ -31,7 +31,7 @@ public class ChargingStation
        this.id = id;
        this.city = city;
        this.location = location;
-       this.chargers = new TreeSet<>(new ChargerComparator());
+       this.chargers = new TreeSet<>(new ComparatorChargersChargingSpeed());
     }
 
     /**

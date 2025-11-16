@@ -4,7 +4,10 @@ import java.util.*;
  * 
  */
 class ComparatorChargersChargingSpeed implements Comparator<Charger> {
-
+    /**
+     * Compara dos cargadores (c1 y c2) para determinar su orden.
+     */
+    @Override
     public int compare(Charger c1, Charger c2) {
         
         if (c1 == null || c2 == null) {
