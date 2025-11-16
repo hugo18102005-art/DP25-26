@@ -88,11 +88,12 @@ public class Charger
     @Override
     public String toString()
     {
-        return "Charger[" + this.id +
-               ", Speed: " + this.chargingSpeed + "kWh" +
-               ", Fee: " + String.format("%.2f", this.chargingFee) + "€/kWh" + 
-               ", Recharged: " + getNumerEVRecharged() + " EVs" +
-               "]";
+        return String.format("(Charger: %s, %dkwh, %.1f€, %d, %.1f€)",
+        this.id,
+        this.chargingSpeed,
+        this.chargingFee,
+        this.getNumerEVRecharged(),
+        this.amountCollected);
     }
     
     
@@ -102,8 +103,14 @@ public class Charger
      */
     public String getCompleteInfo()
     {
-         //TODO: Complete this code
-         return null;
+        String info = this.toString();
+        
+        for(ElectricVehicle ev : this.evsRecharged){
+            info += "\n";
+            info += ev.getInitialFinalInfo();
+            
+        }
+        return info;
     }
     
     /**
@@ -111,10 +118,23 @@ public class Charger
      * @param vehicle The electric vehicle that was recharged.
      */
     public void addEvRecharged(ElectricVehicle vehicle){
+
+
+        if(vehicle != null){
+            this.evsRecharged.add(vehicle);
+        }
+
         
         if (vehicle == null) throw new IllegalArgumentException("null vehicle in addEvRecharged (Charger)");
         
         evsRecharged.add(vehicle);
+
+
+        
+        if (vehicle == null) throw new IllegalArgumentException("null vehicle in addEvRecharged (Charger)");
+        
+        evsRecharged.add(vehicle);
+
     }
     
     /**
