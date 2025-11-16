@@ -118,7 +118,14 @@ public class ElectricVehicle
      */
     public Location getRechargingLocation()
     {
-        return null;
+        if (targetChargingStation == null) {
+            
+            return null;
+            
+        } else {
+            
+            return targetChargingStation.getLocation();
+        }
     }
     
     
@@ -149,9 +156,30 @@ public class ElectricVehicle
      * If there isn't enough battery to reach the target, it attempts to find an intermediate 
      * {@link ChargingStation} and sets it as the {@code rechargingLocation}.
      */
-    public void calculateRoute()
-    {
-        //TODO: Complete this code
+    public void calculateRoute() {
+        if (hasFinishedSimulation) {
+            return;
+        }
+
+        int distanceToFinal = distanceToTheTargetLocation();
+
+        if (enoughBattery(distanceToFinal)) {
+            
+            targetChargingStation = null;
+            currentDestination = targetLocation;
+            return;
+        }
+
+        calculateRechargingPosition();
+
+        if (targetChargingStation == null) {
+            
+            hasFinishedSimulation = true;
+            currentDestination = null;
+            return;
+        }
+
+        currentDestination = targetChargingStation.getLocation();
     }
     
     /**
@@ -185,19 +213,50 @@ public class ElectricVehicle
      */
     public void calculateRechargingPosition()
     {
-        //TODO: Complete this code
+        targetChargingStation = null;
+
+        List<ChargingStation> allStations = company.getCityStations();
+        
+        if (allStations == null || allStations.isEmpty()) {
+            
+            return;
+        }
+
+        ChargingStation bestStation = null;
+        int bestDistance = Integer.MAX_VALUE;
+
+        for (ChargingStation station : allStations) {
+            
+            Location stationLoc = station.getLocation();
+            int distanceToStation = location.distance(stationLoc);
+
+            
+            if (enoughBattery(distanceToStation)) {
+                
+                if (distanceToStation < bestDistance) {
+                    
+                    bestDistance = distanceToStation;
+                    bestStation = station;
+                }
+            }
+        }
+
+        targetChargingStation = bestStation;
     }
     
     
-     /**
+    /**
       * Checks if the vehicle has a planned recharging stop.
       * @return Whether or not this vehicle has a recharging location set.
       */
      public boolean hasRechargingLocation(){
-        //TODO: Complete this code
-        return false;
+         
+         if (targetChargingStation == null) {
+            return false;
+        } else {
+            return true;
+        }
      }
-
     
      /**
       * @return The number of simulation steps this vehicle has been idle.

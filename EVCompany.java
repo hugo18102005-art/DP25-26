@@ -71,7 +71,15 @@ public class EVCompany
      */
     public ChargingStation getChargingStation(String id)
     {
-        //TODO: Complete this code
+        if (id == null) return null;
+        
+        for (ChargingStation s : stations) {
+            
+            if (id.equals(s.getId())) {
+                
+                return s;
+            }
+        }
         return null;
     }
 
@@ -82,7 +90,15 @@ public class EVCompany
      */
     public ChargingStation getChargingStation(Location location)
     {
-        //TODO: Complete this code
+        if (location == null) return null;
+        
+        for (ChargingStation s : stations) {
+            
+            if (s.getLocation().equals(location)) {
+                
+                return s;
+            }
+        }
         return null;
     }
     
@@ -91,24 +107,24 @@ public class EVCompany
      */
     public List<ChargingStation> getCityStations()
     {
-       //TODO: Complete this code
-       return null;
+        return Collections.unmodifiableList(stations);
     }
-    
     
     /**
      * @return The total number of managed {@link ChargingStation}s.
      */
     public int getNumberOfStations(){
-        //TODO: Complete this code
-        return 0;
+        
+        return stations.size();
     }
     
     /**
      * Clears all managed vehicles and stations, resetting the company to an empty state.
      */
     public void reset(){
-        //TODO: Complete this code
+        
+        subscribedVehicles.clear();
+        stations.clear();
     }
     
 }
