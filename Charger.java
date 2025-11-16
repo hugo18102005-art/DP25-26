@@ -42,28 +42,28 @@ public class Charger
     /**
      * @return La velocidad de carga (para el Comparator).
      */
-    public double getSpeed() {
-        // El comparator espera double, pero el constructor pide int.
-        // Hacemos un cast (conversión).
-        return (double) this.chargingSpeed;
+    public int getChargingSpeed (){
+        
+        return this.chargingSpeed;
     }
 
     /**
      * @return La tarifa de carga (céntimos/kWh).
      */
-    public float getFee() {
+    public float getChargingFee (){
+        
         return this.chargingFee;
     }
     
     /**
      * @return La tarifa de carga (para el Comparator).
      * Nota: Añadido para coincidir con el Comparator (getRate).
-     */
     public double getRate() {
         // El comparator espera double, pero el constructor pide float.
         // Hacemos un cast.
         return (double) this.chargingFee;
     }
+    */
     
     /**
      * @return La cantidad total de dinero recolectada.
@@ -71,6 +71,7 @@ public class Charger
     public float getTotalAmountCollected() {
         return this.amountCollected;
     }
+    
     /**
      * Returns a string representation of the charger, including its ID, speed, fee, and the number of EVs recharged.
      * @return A string representation of the charger.
@@ -111,7 +112,6 @@ public class Charger
         return this.evsRecharged.size();
     }
     
-    
     /**
      * Simulates the charging process for an {@link ElectricVehicle}.
      * Increases the amount collected and registers the vehicle as recharged.
@@ -123,19 +123,4 @@ public class Charger
         //TODO: Complete this code 
         return 0;
     }    
-    /**
-     * 
-     */
-    public int getChargingSpeed (){
-        
-        return chargingSpeed;
-    }
-    
-    /**
-     * 
-     */
-    public float getChargingFee (){
-        
-        return chargingFee;
-    }
 }
