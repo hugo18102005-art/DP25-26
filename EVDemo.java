@@ -48,7 +48,11 @@ public class EVDemo
      */
     public EVDemo()
     {
-        //TODO: Complete this code
+        this.vehicles = new ArrayList<>();
+        this.stations = new ArrayList<>();
+        this.company = new EVCompany ("Compañía EVCharging Cáceres");
+        
+        reset();
     }
 
     /**
@@ -73,7 +77,9 @@ public class EVDemo
      */
     public void step(int step)
     {
-        //TODO: Complete the code here
+        for(ElectricVehicle ev : this.vehicles){
+            ev.act(step);
+        }
     }
 
     /**
@@ -86,7 +92,7 @@ public class EVDemo
         vehicles.clear();
         stations.clear();
                 
-        // TODO: Complete the code here
+        this.company = new EVCompany("Compañía EVCharging Cáceres");
 
         createElectricVehicles();
         createStations(); 
@@ -116,10 +122,10 @@ public class EVDemo
 
         ElectricVehicle ev = new ElectricVehicle(plate, name, company,locations[i], targetLocations[i], batteryCapacity);
         vehicles.add(ev);
-            // TODO: Complete the code here
+            this.company.addElectricVehicle(ev);
         }
         
-        // TODO: Complete the code here
+        this.vehicles.sort((v1,v2) -> v1.getPlate().compareTo(v2.getPlate()));
         
     }
     
@@ -132,11 +138,12 @@ public class EVDemo
         Location [] locations = {new Location(10,5), new Location(10,11), new Location(14,16), new Location(8,4)};
                                 
         for (int i=0;i<DEMO.getNumStationsToCreate();i++){
-            stations.add(new ChargingStation("Cáceres","CC0" + i,locations[i]));
-            // TODO: Complete the code here
+            ChargingStation station = new ChargingStation("Cáceres","CC0" + i,locations[i]);
+            this.stations.add(station);
+            this.company.addChargingStation(station);
         }
         
-        // TODO: Complete the code here
+        this.stations.sort((s1,s2) -> s1.getId().compareTo(s2.getId()));
     }
 
     /**
@@ -162,7 +169,9 @@ public class EVDemo
       * This determines if an intermediate recharging stop is necessary.
       */
      private void configureRoutes() {
-         // TODO: Complete the code here
+         for(ElectricVehicle ev : this.vehicles){
+             ev.calculateRoute();
+         }
      }
 
     /**
